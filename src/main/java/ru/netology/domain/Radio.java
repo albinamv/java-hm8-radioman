@@ -4,6 +4,7 @@ public class Radio {
     private int currentStation;
     private int firstStation = 0;
     private int lastStation = 9;
+    private int stationsAmount = 10;
     private int currentVolume;
     private int minVolume = 0;
     private int maxVolume = 100;
@@ -11,7 +12,8 @@ public class Radio {
     public Radio() {
     }
 
-    public Radio(int stationsAmount) { // заменила название параметра на amount, т.к. по-моему он лучше отображает своё значение (лучше, чем lastStation — всё таки это НОМЕР последней станции)
+    public Radio(int stationsAmount) {
+        this.stationsAmount = stationsAmount;
         lastStation = stationsAmount - 1;
     }
 
