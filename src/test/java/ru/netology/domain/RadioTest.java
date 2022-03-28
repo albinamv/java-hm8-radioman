@@ -7,16 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class RadioTest {
 
     @Test
-    void shouldInitializeRadio() {
-        Radio item = new Radio();
+    void shouldInitNumOfLastStation() {
+        Radio item = new Radio(15);
 
-        // проверяем, что все поля объекта инициализировались с нужными значениями
-        assertEquals(0, item.getCurrentStation());
-        assertEquals(0, item.getCurrentVolume());
-        assertEquals(0, item.getFirstStation());
-        assertEquals(9, item.getLastStation());
-        assertEquals(0, item.getMinVolume());
-        assertEquals(10, item.getMaxVolume());
+        int expected = 14;
+        int actual = item.getLastStation();
+
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -34,7 +31,7 @@ class RadioTest {
 
     @Test
     void shouldSetStationInRange() {
-        Radio item = new Radio();
+        Radio item = new Radio(15);
 
         int station = 4;
         int expected = 4;
@@ -47,7 +44,7 @@ class RadioTest {
 
     @Test
     void shouldSetStationAboveRange() {
-        Radio item = new Radio();
+        Radio item = new Radio(15);
 
         int station = 89;
         int expected = 0;
@@ -63,8 +60,8 @@ class RadioTest {
         Radio item = new Radio();
 
         int expected = 1;
-
         item.nextStation();
+
         int actual = item.getCurrentStation();
 
         assertEquals(expected, actual);
@@ -86,7 +83,7 @@ class RadioTest {
 
     @Test
     void shouldSwitchToPrevStation() {
-        Radio item = new Radio();
+        Radio item = new Radio(15);
 
         int station = 5;
         int expected = 4;
@@ -125,16 +122,10 @@ class RadioTest {
 
     @Test
     void shouldDecreaseVolume() {
-        Radio item = new Radio();
-
-        int expected = 4;
-
-        for (int i = 0; i < 5; i++) {
-            item.increaseVolume();
-        }
+        Radio item = new Radio(50, 100);
+        int expected = 49;
 
         item.decreaseVolume();
-
         int actual = item.getCurrentVolume();
 
         assertEquals(expected, actual);
@@ -154,14 +145,10 @@ class RadioTest {
 
     @Test
     void shouldNotIncreaseMaximumVolume() {
-        Radio item = new Radio();
+        Radio item = new Radio(100, 100);
 
-        int maxVolume = item.getMaxVolume();
-        int expected = maxVolume;
-
-        for (int i = 0; i <= maxVolume; i++) {
-            item.increaseVolume();
-        }
+        int expected = 100;
+        item.increaseVolume();
 
         int actual = item.getCurrentVolume();
 
