@@ -7,6 +7,16 @@ import static org.junit.jupiter.api.Assertions.*;
 class RadioTest {
 
     @Test
+    void shouldInitNumOfFirstStation() {
+        Radio item = new Radio();
+
+        int expected = 0;
+        int actual = item.getFirstStation();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     void shouldInitNumOfLastStation() {
         Radio item = new Radio(15);
 
@@ -135,7 +145,7 @@ class RadioTest {
     void shouldNotDecreaseMinimumVolume() {
         Radio item = new Radio();
 
-        int expected = item.getMinVolume();
+        int expected = 0;
         item.decreaseVolume();
 
         int actual = item.getCurrentVolume();
