@@ -7,6 +7,27 @@ import static org.junit.jupiter.api.Assertions.*;
 class RadioTest {
 
     @Test
+    void shouldSetDefaultAmountOfStations() {
+        Radio item = new Radio();
+
+        int expected = 10;
+        int actual = item.getStationsAmount();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldSetCustomAmountOfStations() {
+        Radio item = new Radio(34);
+
+        int expected = 34;
+        int actual = item.getStationsAmount();
+
+        assertEquals(expected, actual);
+    }
+
+    // проверяю отдельно геттеры для номеров первой и последней станций, т.к. они используются в тестах
+    @Test
     void shouldInitNumOfFirstStation() {
         Radio item = new Radio();
 
@@ -133,6 +154,7 @@ class RadioTest {
     @Test
     void shouldDecreaseVolume() {
         Radio item = new Radio(50, 100);
+
         int expected = 49;
 
         item.decreaseVolume();
