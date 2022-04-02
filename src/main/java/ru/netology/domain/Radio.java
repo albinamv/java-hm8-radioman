@@ -3,7 +3,7 @@ package ru.netology.domain;
 public class Radio {
     private int currentStation;
     private int firstStation = 0;
-    private int lastStation = 9; // оставила переменную с номером последней станции, т.к. код уже до этого был под неё написан и соответствовал новым требованиям задачи
+    private int lastStation = 9;
     private int stationsAmount = 10;
     private int currentVolume;
     private int minVolume = 0;
@@ -52,7 +52,7 @@ public class Radio {
     }
 
     public void setCurrentStation(int currentStation) {
-        if (currentStation > stationsAmount - 1) {
+        if (currentStation > lastStation) {
             return;
         }
         if (currentStation < firstStation) {
@@ -62,7 +62,7 @@ public class Radio {
     }
 
     public void nextStation() {
-        if (currentStation < stationsAmount - 1) {
+        if (currentStation < lastStation) {
             currentStation++;
         } else {
             currentStation = firstStation;
@@ -73,7 +73,7 @@ public class Radio {
         if (currentStation > firstStation) {
             currentStation--;
         } else {
-            currentStation = stationsAmount - 1;
+            currentStation = lastStation;
         }
     }
 
